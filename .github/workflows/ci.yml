@@ -24,3 +24,9 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-report
+          path: reports/junit
