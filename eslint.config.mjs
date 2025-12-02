@@ -1,12 +1,23 @@
 import js from "@eslint/js";
 import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
-import { defineConfig } from "eslint/config";
 
-export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
-  tseslint.configs.recommended,
-  pluginVue.configs["flat/essential"],
-  { files: ["**/*.vue"], languageOptions: { parserOptions: { parser: tseslint.parser } } },
-]);
+export default [
+  {
+    // Aplica a todos los archivos .js
+    ...js.configs.recommended, // Fusiona las reglas recomendadas
+    files: ["**/*.js"],
+    languageOptions: {
+      // Define las variables globales para el entorno de Node.js
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+  {
+    // Aplica solo a los archivos de prueba
+    files: ["tests/**/*.test.js"],
+    languageOptions: {
+      globals: { ...globals.jest }, // Define las globales de Jest (test, expect, etc.)
+    },
+  },
+];
