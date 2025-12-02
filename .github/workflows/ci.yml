@@ -1,3 +1,11 @@
+# /// Añadir paralelismo y stages como los pipelines PRO
+# Vamos a dividir las tareas:
+# Stage 1: Lint
+# Stage 2: Tests unitarios
+# Stage 3: Tests de integración
+# Stage 4: Reportes
+# Tu pipeline ahora se ve así (versión avanzada):
+
 name: CI Pipeline Pro
 
 on: [push, pull_request]
