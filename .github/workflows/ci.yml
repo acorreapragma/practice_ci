@@ -30,3 +30,6 @@ jobs:
         with:
           name: junit-report
           path: reports/junit
+
+      - name: Run lint
+        run: npx eslint .
